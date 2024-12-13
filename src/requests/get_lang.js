@@ -10,6 +10,9 @@ export const userLang = async ()=>{
         {
             params:{
                 tg_id:userId
+            },
+            headers:{
+              "ngrok-skip-browser-warning":'skip'
             }
         }
     )

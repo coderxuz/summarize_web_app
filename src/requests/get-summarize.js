@@ -12,6 +12,9 @@ export const get_summarize = async (videoUrl, userLang) => {
         user_lang: userLang,
         user_id: userId,
       },
+      headers:{
+        "ngrok-skip-browser-warning":'skip'
+      }
     });
 
     return response.data;
