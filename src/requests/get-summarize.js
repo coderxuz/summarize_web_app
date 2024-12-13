@@ -1,10 +1,10 @@
 import axios from "axios";
-import { userId } from "../telegram_web/user_data";
+import { userId } from "../web_app/user_data";
 
-const BACKEND_URL = process.env.BACKEND_URL;
-console.log(BACKEND_URL);
+export const BACKEND_URL = import.meta.env.VITE_BACKEND_URL
 
-export const get_summarize = async (videoUrl, userLang, userId) => {
+
+export const get_summarize = async (videoUrl, userLang) => {
   try {
     const response = await axios.get(`${BACKEND_URL}/summarize`, {
       params: {

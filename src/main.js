@@ -1,40 +1,44 @@
-import './style.scss';
-import axios from 'axios';
+import "./style.scss";
+import { get_summarize } from "./requests/get-summarize";
+import { userLang } from "./requests/get_lang";
+import { getTranslation } from "./translations/translations";
 
-const BACKEND_URL = 'https://a458-84-54-70-42.ngrok-free.app' // import.meta.env.BACKEND_URL;
-console.log(BACKEND_URL);
+const userLangFetch = await userLang();
+const userLangCode = userLangFetch.lang_code
+const $form = document.querySelector("form");
+const $input = document.getElementById("video_url_field");
+const $errorOrResult = document.querySelector("#error_or_result .result");
+// const $help = document.querySelector("#error_or_result .help");
 
+// $help.innerHTML = getTranslation(
+//   'en',
+//   "resize"
+// );
 
-const get_summarize =async (videoUrl, userLang, userId) => {
-  try {
-    const response =await  axios.get(`${BACKEND_URL}/summarize`, {
-      params: {
-        video_url: videoUrl,
-        user_lang: userLang,
-        user_id: userId,
-      },
-      headers:{
-        'ngrok-skip-browser-warning':'skip'
-      }
-    });
-
-    return await  response.data;
-  } catch (error) {
-    console.error("Error fetching summarize:", error);
-    throw error;
-  }
-};
-
-
-const tg = window.Telegram.WebApp;
-tg.ready();
-
-async function displayUserData() {
-  const initData = tg.initDataUnsafe;
-  const userId = initData.user?.id
-  const summarized = await get_summarize("https://youtu.be/LaDZnn7WgOY?si=n14fBdaQSnAUpVaO",'uz',6110556252)
-  console.log(summarized);
+$form.addEventListener("submit", async(e) => {
+  e.preventDefault();
+  const url = $input.value;
+  console.log(url);
   
-}
-displayUserData()
+  if (url == '') {
+    $errorOrResult.classList.value = 'error'
+    $errorOrResult.textContent = getTranslation(
+      userLangCode,
+      "please_write_url"
+    );
+    return
+  }
+  if (!(url.includes("youtube.com") || url.includes("youtu.be"))) {
+    $errorOrResult.classList.value = 'error'
+    $errorOrResult.textContent = getTranslation(
+      userLangCode,
+      "please-send-valid-url"
+    );
+    return
+  }
 
+  $errorOrResult.textContent = ''
+  const summary = await get_summarize(url,userLangCode)
+  $errorOrResult.classList.value = 'result'
+  $errorOrResult.textContent = summary.summarized_text
+});

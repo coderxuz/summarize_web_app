@@ -1,22 +1,26 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Telegram Mini Apps Vanilla JS Sample App</title>
-</head>
+  </head>
 
-<body>
-  <form action="">
-    <input type="text" placeholder="youtube video url">
-    <input type="submit">
-  </form>  
+  <body>
+    <form action="" class="form_default">
+      <input type="text" placeholder="youtube video url" id="video_url_field" />
+      <div id="error_or_result"><p class="result"></p> <p class="help"></p></div>
+      <input type="submit" id="submit" />
 
+    </form>
 
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script src="/src/main.js" type="module"></script>
-    <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
-    <script>eruda.init();</script>
-</body>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+    <script>eruda.init();</script> -->
+  </body>
 </html>

@@ -1,0 +1,15 @@
+{
+  "en": {
+    "please_write_url": "Please write URL",
+    "please-send-valid-url": "Please send a valid URL",
+    "resize":"you can resize this </br> box by push box's </br> right bottom"
+  },
+  "uz": {
+    "please_write_url": "Iltimos, URL manzilini yozing",
+    "please-send-valid-url": "Iltimos, haqiqiy URL yuboring"
+  },
+  "ru": {
+    "please_write_url": "Пожалуйста, напишите URL",
+    "please-send-valid-url": "Пожалуйста, отправьте действительный URL"
+  }
+}
